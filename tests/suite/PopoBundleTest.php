@@ -35,7 +35,7 @@ class PopoBundleTest extends TestCase
             'default' => [
                 # 'namespace' => 'ExampleVendor\\App\\Example',
                 'outputPath' => 'tests',
-                # 'namespaceRoot' => 'ExampleVendor\\',
+                'namespaceRoot' => 'ExampleVendor\\',
                 'schemaPathFilter' => null,
                 'schemaConfigFilename' => null,
                 'ignoreNonExistingSchemaFolder' => false,
