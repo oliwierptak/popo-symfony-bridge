@@ -1,5 +1,7 @@
 # POPO Symfony-Bridge
 
+[![Build and run tests](https://github.com/oliwierptak/popo-symfony-bridge/actions/workflows/main.yml/badge.svg)](https://github.com/oliwierptak/popo-symfony-bridge/actions/workflows/main.yml)
+
 Symfony bundle for [POPO Generator](https://github.com/oliwierptak/popo).
 
 ## Installation
