@@ -1,0 +1,10 @@
+.idea
+.phpunit.cache
+tests/logs/
+vendor/
+composer.lock
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+

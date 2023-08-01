@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  PopoBundle\:
+    resource: '../src/'
+
+  popo.command.popo:
+    class: PopoBundle\Command\PopoGenerateCommand
+    public: true
+    tags:
+      - name: 'console.command'
+        command: 'popo:generate'
+

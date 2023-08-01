@@ -1,0 +1,31 @@
+$:
+  config:
+    namespace: ExampleVendor\App\Order
+    namespaceRoot: ExampleVendor
+    outputPath: tests/
+    phpComment: |
+      Auto-generated.
+
+Order:
+  Order:
+    property:
+      - name: customer
+        type: popo
+        default: \ExampleVendor\App\Customer\Customer::class
+      - name: items
+        type: array
+        itemName: orderItem
+        itemType: OrderItem::class
+      - name: created
+        type: datetime
+        extra:
+          timezone: Europe/Berlin
+          format: Y-m-d\TH:i:sP
+
+  OrderItem:
+    property:
+      - name: price
+        type: int
+      - name: product
+        type: popo
+        default: \ExampleVendor\App\Product\Product::class

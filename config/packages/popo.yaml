@@ -1,0 +1,29 @@
+# config/packages/popo.yaml
+# schemaPath is required, other options can be defined in POPO schema file
+popo:
+  default:
+    # namespace: ExampleVendor\App\Example
+    outputPath: tests
+    # namespaceRoot: ExampleVendor\
+    schemaPathFilter: # e.g. bundles
+    schemaConfigFilename: # e.g. bundles/project.config.yml
+    ignoreNonExistingSchemaFolder: false
+    schemaFilenameMask: '*.popo.yaml'
+    classPluginCollection: []
+    mappingPolicyPluginCollection: []
+    namespacePluginCollection: []
+    phpFilePluginCollection: []
+    propertyPluginCollection: []
+
+  config:
+    # customer, settings here overwrite the default values
+    - schemaPath: config/packages/popo/customer.popo.yaml
+
+    # order, settings here overwrite the default values
+    - schemaPath: config/packages/popo/order.popo.yaml
+
+    # product, settings here overwrite the default values
+    - schemaPath: config/packages/popo/product.popo.yaml
+
+    # or simply load all at once
+    - schemaPath: config/packages/popo

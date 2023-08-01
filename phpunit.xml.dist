@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="true" stopOnError="true" stopOnIncomplete="false" stopOnSkipped="false" stderr="true" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage includeUncoveredFiles="true">
+    <report>
+      <clover outputFile="./tests/logs/coverage.xml"/>
+      <html outputDirectory="./tests/logs/coverage"/>
+    </report>
+  </coverage>
+  <logging>
+    <testdoxHtml outputFile="./tests/logs/coverage/index.html"/>
+  </logging>
+  <groups>
+    <exclude>
+      <group>skip</group>
+    </exclude>
+  </groups>
+  <testsuites>
+    <testsuite name="App">
+      <directory>./tests/App</directory>
+    </testsuite>
+    <testsuite name="PopoBundleSuite">
+      <directory>./tests/suite</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory>tests/suite-helper/</directory>
+    </exclude>
+  </source>
+</phpunit>

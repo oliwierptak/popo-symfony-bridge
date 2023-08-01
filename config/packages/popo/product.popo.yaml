@@ -1,0 +1,12 @@
+$:
+  config:
+    namespace: ExampleVendor\App\Product
+    namespaceRoot: ExampleVendor
+    outputPath: tests/
+    phpComment: |
+      Auto-generated.
+
+Product:
+  Product:
+    property:
+      - name: sku
