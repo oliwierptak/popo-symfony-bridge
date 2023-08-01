@@ -3,9 +3,7 @@ parameters:
 	paths:
 		- src
 		- tests/suite
-		- tests/suite-helper
 	bootstrapFiles:
 		- tests/bootstrap.php
 	excludePaths:
 		- tests/*
-		- src/Popo/PopoConfigurator.php

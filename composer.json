@@ -24,21 +24,21 @@
   "autoload-dev": {
     "psr-4": {
       "PopoBundleTestSuite\\": "tests/suite/",
-      "PopoBundleTestSuiteHelper\\": "tests/suite-helper",
       "ExampleVendor\\App\\": "tests/App"
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "^10.2"
+    "phpunit/phpunit": "^10.2",
+    "phpstan/phpstan": "^1.10"
   },
   "scripts": {
     "phpstan": [
       "vendor/bin/phpstan analyse -c phpstan.neon"
     ],
-    "test": [
+    "tests": [
       "vendor/bin/phpunit --no-coverage --testdox --group default"
     ],
-    "test-c": [
+    "tests-c": [
       "XDEBUG_MODE=coverage vendor/bin/phpunit --testdox --group default"
     ]
   }

@@ -16,8 +16,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class PopoGenerateCommand extends GenerateCommand
 {
+    /**
+     * @var array<string,mixed>
+     */
     private array $configurationData;
 
+    /**
+     * @param array<string,mixed> $data
+     */
     public function __construct(string $name = null, array $data = [])
     {
         parent::__construct($name);
@@ -47,6 +53,9 @@ class PopoGenerateCommand extends GenerateCommand
         return Command::SUCCESS;
     }
 
+    /**
+     * @param array<string,mixed> $config
+     */
     protected function buildPopoInput(InputInterface $input, array $config): void
     {
         $configurator = (new PopoConfigurator())
