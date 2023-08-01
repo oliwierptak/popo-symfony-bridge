@@ -4,12 +4,13 @@ popo:
   default:
     # namespace: ExampleVendor\App\Example
     outputPath: tests
-    # namespaceRoot: ExampleVendor\
+    namespaceRoot: ExampleVendor\
     schemaPathFilter: # e.g. bundles
     schemaConfigFilename: # e.g. bundles/project.config.yml
     ignoreNonExistingSchemaFolder: false
     schemaFilenameMask: '*.popo.yaml'
-    classPluginCollection: []
+    classPluginCollection:
+      - \PopoBundle\Plugin\HelloWorldPopoPlugin
     mappingPolicyPluginCollection: []
     namespacePluginCollection: []
     phpFilePluginCollection: []

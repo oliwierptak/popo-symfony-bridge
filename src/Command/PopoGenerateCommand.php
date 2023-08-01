@@ -33,16 +33,20 @@ class PopoGenerateCommand extends GenerateCommand
 
     protected function executeCommand(InputInterface $input, OutputInterface $output): int
     {
-        $data = $this->configurationData['config'] ?? [];
-        array_walk($data, function (array &$item) {
-            $item = array_merge(
-                $this->configurationData['default'] ?? [],
-                $item,
-            );
-        });
+        $data = $this->mergeConfigWithDefault();
+
+        $shouldIgnoreNonExistingSchemaFolder = (bool)($input->hasOption(
+            static::OPTION_IGNORE_NON_EXISTING_SCHEMA_FOLDER
+        ) ? $input->getOption(
+            static::OPTION_IGNORE_NON_EXISTING_SCHEMA_FOLDER
+        ) : false);
 
         foreach ($data as $config) {
-            $this->buildPopoInput($input, $config);
+            $configurator = (new PopoConfigurator())
+                ->fromArray($config)
+                ->setShouldIgnoreNonExistingSchemaFolder($shouldIgnoreNonExistingSchemaFolder);
+
+            $input = $this->buildPopoInput($input, $configurator);
 
             $result = parent::executeCommand($input, $output);
             if ($result === Command::FAILURE) {
@@ -54,18 +58,23 @@ class PopoGenerateCommand extends GenerateCommand
     }
 
     /**
-     * @param array<string,mixed> $config
+     * @return array<string,mixed>
      */
-    protected function buildPopoInput(InputInterface $input, array $config): void
+    protected function mergeConfigWithDefault(): array
     {
-        $configurator = (new PopoConfigurator())
-            ->fromArray($config)
-            ->setShouldIgnoreNonExistingSchemaFolder(
-                (bool) ($input->hasOption(static::OPTION_IGNORE_NON_EXISTING_SCHEMA_FOLDER) ? $input->getOption(
-                    static::OPTION_IGNORE_NON_EXISTING_SCHEMA_FOLDER
-                ) : false)
+        $data = $this->configurationData['config'] ?? [];
+        array_walk($data, function (array &$item) {
+            $item = array_replace_recursive(
+                $this->configurationData['default'] ?? [],
+                $item,
             );
+        });
 
+        return $data;
+    }
+
+    protected function buildPopoInput(InputInterface $input, PopoConfigurator $configurator): InputInterface
+    {
         $input->setOption(static::OPTION_SCHEMA_PATH, $configurator->getSchemaPath());
         $input->setOption(static::OPTION_SCHEMA_PATH_FILTER, $configurator->getSchemaPathFilter());
         $input->setOption(static::OPTION_SCHEMA_CONFIG_FILENAME, $configurator->getSchemaConfigFilename());
@@ -79,5 +88,7 @@ class PopoGenerateCommand extends GenerateCommand
         $input->setOption(static::OPTION_NAMESPACE_PLUGIN_COLLECTION, $configurator->getNamespacePluginCollection());
         $input->setOption(static::OPTION_PHP_FILE_PLUGIN_COLLECTION, $configurator->getPhpFilePluginCollection());
         $input->setOption(static::OPTION_PROPERTY_PLUGIN_COLLECTION, $configurator->getPropertyPluginCollection());
+
+        return $input;
     }
 }
