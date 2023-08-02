@@ -14,7 +14,7 @@
     "symfony/http-kernel": "^6.3",
     "symfony/dependency-injection": "^6.3",
     "symfony/config": "^6.3",
-    "popo/generator": "^6.3"
+    "popo/generator": "^6"
   },
   "autoload": {
     "psr-4": {
