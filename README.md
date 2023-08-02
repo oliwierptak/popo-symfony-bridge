@@ -107,4 +107,13 @@ class HelloWorldPopoPlugin implements ClassPluginInterface
 }
 ```
 
+Generated code:
+
+```php
+public function helloWorld(): string
+{
+    return "Hello World";
+}
+```
+
 See [POPO Plugins Documentation](https://github.com/oliwierptak/popo/blob/main/README_PLUGINS.md) for more info.
